@@ -1,381 +1,290 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Tech Bootcamps | Transform Your Tech Future</title>
-    <meta name="description"
-        content="Master the most in-demand tech skills through intensive bootcamps guided by industry experts. Join Talent Tech today.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>TalentTech | Elite Bootcamps</title>
+    <meta name="description" content="Centro de formación en tecnologías de vanguardia. IA, Ciberseguridad, Big Data y más.">
+    
+    <!-- Design System: Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons (Development only, for production use ESM or SVG) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#14B8A6', // Teal Action Color
+                        dark: {
+                            DEFAULT: '#020617',
+                            card: 'rgba(2, 6, 23, 0.4)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(20, 184, 166, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 240px;
+            gap: 1.5rem;
+        }
+
+        /* Aspect ratio for responsive bento */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Micro-animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, #14B8A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
 
-<body>
-    <header id="header">
-        <nav class="navbar container">
-            <div class="logo">
-                <a href="#">TALENT<span>TECH</span></a>
+<body class="antialiased selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+
+    <!-- HEADER: Minimalist Premium Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-dark/80 border-b border-white/5">
+        <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform duration-300">
+                    <i data-lucide="zap" class="text-[#020617] w-6 h-6 fill-current"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight">TALENT<span class="text-primary">TECH</span></span>
             </div>
-            <ul class="nav-links">
-                <li><a href="#bootcamps">Bootcamps</a></li>
-                <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#apply" class="btn btn-secondary">Apply Now</a></li>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex items-center gap-10 text-sm font-medium text-slate-400">
+                <li><a href="#inicio" class="hover:text-primary transition-colors">Inicio</a></li>
+                <li><a href="#bootcamps" class="text-primary bg-primary/10 px-3 py-1.5 rounded-full">Bootcamps</a></li>
+                <li><a href="#comunidad" class="hover:text-primary transition-colors">Comunidad</a></li>
+                <li><a href="#nosotros" class="hover:text-primary transition-colors">Nosotros</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block text-slate-300 hover:text-white transition-colors text-sm font-medium mr-2">Login</button>
+                <a href="#apply" class="px-6 py-2.5 bg-primary text-[#020617] rounded-full text-sm font-semibold hover:bg-opacity-90 hover:scale-105 transition-all shadow-lg shadow-primary/20">
+                    Postular Ahora
+                </a>
             </div>
         </nav>
     </header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero" id="home">
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <h1>Transform Your Future with <span>Technology Bootcamps</span></h1>
-                    <p>Master the most in-demand tech skills through intensive programs guided by industry experts.</p>
-                    <div class="hero-btns">
-                        <a href="#bootcamps" class="btn btn-primary">Explore Bootcamps</a>
-                        <a href="#apply" class="btn btn-outline">Apply Now</a>
-                    </div>
-                </div>
-                <div class="hero-trust">
-                    <div class="trust-item">
-                        <i class="fas fa-user-tie"></i>
-                        <span>Industry Mentors</span>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fas fa-code-branch"></i>
-                        <span>Real World Projects</span>
-                    </div>
-                    <div class="trust-item">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Career Support</span>
-                    </div>
-                </div>
+    <main class="pt-32 pb-20">
+        
+        <!-- HERO MINI (Contexto) -->
+        <section id="inicio" class="container mx-auto px-6 mb-24 relative">
+            <div class="absolute -top-20 -left-20 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+            <div class="max-w-3xl">
+                <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-bold uppercase tracking-widest mb-6">Próxima Cohorte: Mayo 2024</span>
+                <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tighter">
+                    Forjando a los <br> 
+                    <span class="text-gradient">Líderes Tech</span> de Latam
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+                    No solo enseñamos código, transformamos carreras. Programas intensivos diseñados para el mercado laboral global con mentoría de élite.
+                </p>
             </div>
         </section>
 
-        <!-- BOOTCAMP AREAS SECTION -->
-        <section class="bootcamps section-padding" id="bootcamps">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Choose Your <span>Technology Path</span></h2>
-                    <p>Select a specialization that aligns with your career goals</p>
+        <!-- BOOTCAMPS SECTION: BENTO GRID -->
+        <section id="bootcamps" class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4 tracking-tight">Rutas de Especialización</h2>
+                    <p class="text-slate-500 max-w-md">Selecciona tu camino tecnológico. Cada bootcamp incluye proyectos reales y acceso vitalicio a la comunidad.</p>
                 </div>
-                <div class="bootcamp-grid">
-                    <!-- Area 1: Cybersecurity -->
-                    <div class="bootcamp-card">
-                        <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
-                        <h3>Cybersecurity</h3>
-                        <p>Protect digital assets and systems from evolving cyber threats with intensive training.</p>
-                        <ul class="level-list">
-                            <li><i class="fas fa-check"></i> Cybersecurity Fundamentals</li>
-                            <li><i class="fas fa-check"></i> Defensive Security Specialist</li>
-                            <li><i class="fas fa-check"></i> Ethical Hacking Professional</li>
-                        </ul>
-                        <a href="#apply" class="btn btn-card">Learn More</a>
-                    </div>
-
-                    <!-- Area 2: Artificial Intelligence -->
-                    <div class="bootcamp-card">
-                        <div class="card-icon"><i class="fas fa-brain"></i></div>
-                        <h3>Artificial Intelligence</h3>
-                        <p>Unlock the power of AI and machine learning to build intelligent systems of the future.</p>
-                        <ul class="level-list">
-                            <li><i class="fas fa-check"></i> AI Foundations</li>
-                            <li><i class="fas fa-check"></i> Machine Learning Engineer</li>
-                            <li><i class="fas fa-check"></i> Advanced AI Systems</li>
-                        </ul>
-                        <a href="#apply" class="btn btn-card">Learn More</a>
-                    </div>
-
-                    <!-- Area 3: Big Data -->
-                    <div class="bootcamp-card">
-                        <div class="card-icon"><i class="fas fa-database"></i></div>
-                        <h3>Big Data & Data Engineering</h3>
-                        <p>Master the tools and techniques to handle massive datasets and drive data-driven decisions.
-                        </p>
-                        <ul class="level-list">
-                            <li><i class="fas fa-check"></i> Data Analysis Fundamentals</li>
-                            <li><i class="fas fa-check"></i> Big Data Engineering</li>
-                            <li><i class="fas fa-check"></i> Advanced Data Architectures</li>
-                        </ul>
-                        <a href="#apply" class="btn btn-card">Learn More</a>
-                    </div>
-
-                    <!-- Area 4: Full Stack -->
-                    <div class="bootcamp-card">
-                        <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Full Stack Development</h3>
-                        <p>Build end-to-end web applications using the most popular modern frameworks and tools.</p>
-                        <ul class="level-list">
-                            <li><i class="fas fa-check"></i> Web Development Foundations</li>
-                            <li><i class="fas fa-check"></i> Full Stack Developer</li>
-                            <li><i class="fas fa-check"></i> Advanced Software Engineering</li>
-                        </ul>
-                        <a href="#apply" class="btn btn-card">Learn More</a>
-                    </div>
-
-                    <!-- Area 5: Cloud & DevOps -->
-                    <div class="bootcamp-card highlight">
-                        <div class="card-icon"><i class="fas fa-cloud"></i></div>
-                        <h3>Cloud Computing & DevOps</h3>
-                        <p>Scale applications and automate infrastructure using industry-leading cloud platforms.</p>
-                        <ul class="level-list">
-                            <li><i class="fas fa-check"></i> Cloud Foundations</li>
-                            <li><i class="fas fa-check"></i> DevOps Engineer</li>
-                            <li><i class="fas fa-check"></i> Cloud Architecture Expert</li>
-                        </ul>
-                        <a href="#apply" class="btn btn-card">Learn More</a>
-                    </div>
+                <div class="flex gap-2">
+                    <button class="p-2 border border-white/10 rounded-lg hover:bg-white/5 transition-colors"><i data-lucide="chevron-left"></i></button>
+                    <button class="p-2 border border-primary/20 rounded-lg bg-primary/5 text-primary hover:bg-primary/10 transition-colors"><i data-lucide="chevron-right"></i></button>
                 </div>
             </div>
-        </section>
 
-        <!-- WHY STUDY WITH US SECTION -->
-        <section class="why-us section-padding" id="why-us">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Study With <span>Us</span></h2>
-                </div>
-                <div class="why-grid">
-                    <div class="why-card">
-                        <i class="fas fa-users-gear"></i>
-                        <h4>Industry Mentors</h4>
-                        <p>Learn from professionals working in top tech companies worldwide.</p>
+            <!-- Bento Grid Structure -->
+            <div class="bento-grid">
+                
+                <!-- IA (Dominante) -->
+                <article class="glass-card p-10 col-span-2 row-span-2 flex flex-col justify-between group overflow-hidden relative">
+                    <div class="absolute -right-10 -top-10 w-64 h-64 bg-primary/10 blur-3xl rounded-full group-hover:bg-primary/20 transition-all"></div>
+                    <div>
+                        <div class="w-14 h-14 bg-primary/20 border border-primary/30 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+                            <i data-lucide="brain-circuit" class="text-primary w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-4xl font-bold mb-4">Inteligencia Artificial</h3>
+                        <p class="text-slate-400 text-lg max-w-sm mb-6">Domina Machine Learning, Deep Learning y LLMs. El futuro se construye aquí.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-white/5 rounded-md text-xs border border-white/10 uppercase font-medium">PyTorch</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-md text-xs border border-white/10 uppercase font-medium">NLP</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-md text-xs border border-white/10 uppercase font-medium">Generative AI</span>
+                        </div>
                     </div>
-                    <div class="why-card">
-                        <i class="fas fa-cubes"></i>
-                        <h4>Hands-On Projects</h4>
-                        <p>Build real world solutions and graduate with a professional portfolio.</p>
-                    </div>
-                    <div class="why-card">
-                        <i class="fas fa-rocket"></i>
-                        <h4>Career Opportunities</h4>
-                        <p>Get prepared for high-demand technology jobs with dedicated support.</p>
-                    </div>
-                    <div class="why-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h4>Flexible Learning</h4>
-                        <p>Bootcamps designed to fit the schedules of working professionals.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <a href="#" class="flex items-center gap-2 text-primary font-bold group/btn">
+                        Ver Detalles <i data-lucide="arrow-right" class="w-5 h-5 group-hover/btn:translate-x-2 transition-transform"></i>
+                    </a>
+                </article>
 
-        <!-- LEARNING PROCESS SECTION -->
-        <section class="process section-padding" id="process">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our <span>Learning Process</span></h2>
-                </div>
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>Apply to the program</h4>
-                        <p>Check requirements and submit your application online.</p>
+                <!-- Ciberseguridad -->
+                <article class="glass-card p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/20 border border-white/10 transition-all">
+                            <i data-lucide="shield-check" class="text-slate-400 group-hover:text-primary w-6 h-6 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Ciberseguridad</h3>
+                        <p class="text-slate-500 text-sm">Hacking ético y defensa reactiva en infraestructuras críticas.</p>
                     </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>Get accepted</h4>
-                        <p>Complete the interview and start your learning journey.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>Develop projects</h4>
-                        <p>Build real-world solutions with expert guidance.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h4>Enter the industry</h4>
-                        <p>Graduate and launch your career in the tech world.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <div class="text-xs font-bold text-slate-600 group-hover:text-primary transition-colors tracking-widest uppercase mt-4">Nivel Avanzado</div>
+                </article>
 
-        <!-- TESTIMONIALS SECTION -->
-        <section class="testimonials section-padding" id="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What Our <span>Students Say</span></h2>
-                </div>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-img">
-                            <img src="assets/student1.png" alt="Student">
+                <!-- Big Data -->
+                <article class="glass-card p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/20 border border-white/10 transition-all">
+                            <i data-lucide="database" class="text-slate-400 group-hover:text-primary w-6 h-6 transition-colors"></i>
                         </div>
-                        <p>"The Full Stack bootcamp completely changed my career path. I went from zero to hiring-ready
-                            in months."</p>
-                        <h5>Elena Rodriguez</h5>
-                        <span>Software Engineer @ TechCorp</span>
+                        <h3 class="text-xl font-bold mb-2">Big Data</h3>
+                        <p class="text-slate-500 text-sm">Arquitecturas de datos masivos y procesamiento en tiempo real.</p>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-img">
-                            <img src="assets/student2.png" alt="Student">
-                        </div>
-                        <p>"The mentorship was incredible. Having an expert guide me through AI concepts made all the
-                            difference."</p>
-                        <h5>Marcus Chen</h5>
-                        <span>ML Engineer @ Innovate</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-img">
-                            <img src="assets/student3.png" alt="Student">
-                        </div>
-                        <p>"Flexible schedules allowed me to keep my job while learning Cloud Architecture. Now I lead
-                            the DevOps team."</p>
-                        <h5>Sarah Jenkins</h5>
-                        <span>Cloud Solutions Architect</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+                     <div class="text-xs font-bold text-slate-600 group-hover:text-primary transition-colors tracking-widest uppercase mt-4">Nivel Pro</div>
+                </article>
 
-        <!-- REGISTRATION FORM SECTION -->
-        <section class="apply section-padding" id="apply">
-            <div class="container">
-                <div class="apply-container">
-                    <div class="apply-header">
-                        <h2>Apply to a <span>Bootcamp</span></h2>
-                        <p>Take the first step towards your new tech career</p>
+                <!-- Full Stack -->
+                <article class="glass-card p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/20 border border-white/10 transition-all">
+                            <i data-lucide="code-2" class="text-slate-400 group-hover:text-primary w-6 h-6 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Full Stack</h3>
+                        <p class="text-slate-500 text-sm">Desarrollo de aplicaciones modernas E2E con React y Node.js.</p>
                     </div>
-                    <form id="registration-form" class="registration-form" action="https://formspree.io/f/xbdzgroy"
-                        method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first-name">First Name</label>
-                                <input type="text" id="first-name" name="first-name" required placeholder="John">
-                            </div>
-                            <div class="form-group">
-                                <label for="last-name">Last Name</label>
-                                <input type="text" id="last-name" name="last-name" required placeholder="Doe">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required placeholder="john@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="country">Country</label>
-                                <input type="text" id="country" name="country" required placeholder="United States">
-                            </div>
-                            <div class="form-group">
-                                <label for="profession">Current Profession</label>
-                                <input type="text" id="profession" name="profession" required
-                                    placeholder="Student / Designer / etc.">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="bootcamp-area">Bootcamp Area</label>
-                                <select id="bootcamp-area" name="bootcamp-area" required>
-                                    <option value="" disabled selected>Select an area</option>
-                                    <option value="cybersecurity">Cybersecurity</option>
-                                    <option value="ai">Artificial Intelligence</option>
-                                    <option value="big-data">Big Data & Data Engineering</option>
-                                    <option value="full-stack">Full Stack Development</option>
-                                    <option value="cloud-devops">Cloud Computing & DevOps</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="level">Level of Interest</label>
-                                <select id="level" name="level" required>
-                                    <option value="" disabled selected>Select a level</option>
-                                    <option value="beginner">Beginner</option>
-                                    <option value="intermediate">Intermediate</option>
-                                    <option value="advanced">Advanced</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="start-date">Preferred Start Date</label>
-                            <input type="date" id="start-date" name="start-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="motivation">Motivation</label>
-                            <textarea id="motivation" name="motivation" rows="4" required
-                                placeholder="Why do you want to join this bootcamp?"></textarea>
-                        </div>
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">I accept the terms and privacy policy</label>
-                        </div>
-                        <button type="submit" class="btn btn-submit">Submit Application</button>
-                    </form>
-                    <div id="confirmation-msg" class="confirmation-msg hidden">
-                        <i class="fas fa-circle-check"></i>
-                        <h3>Application Received!</h3>
-                        <p>Your application has been received. Our admissions team will contact you soon.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                     <div class="text-xs font-bold text-slate-600 group-hover:text-primary transition-colors tracking-widest uppercase mt-4">Alta Demanda</div>
+                </article>
 
-        <!-- FINAL CALL TO ACTION -->
-        <section class="final-cta section-padding">
-            <div class="container">
-                <h2>Start Your Tech <span>Career Today</span></h2>
-                <p>Join thousands of successful graduates working in top tech companies.</p>
-                <div class="cta-btns">
-                    <a href="#apply" class="btn btn-primary">Apply Now</a>
-                    <a href="#bootcamps" class="btn btn-outline-white">View Programs</a>
-                </div>
+                <!-- Cloud -->
+                <article class="glass-card p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10 group-hover:border-primary/20 border border-white/10 transition-all">
+                            <i data-lucide="cloud" class="text-slate-400 group-hover:text-primary w-6 h-6 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cloud Computing</h3>
+                        <p class="text-slate-500 text-sm">Despliegue escalable y DevOps en AWS, Azure y Google Cloud.</p>
+                    </div>
+                     <div class="text-xs font-bold text-slate-600 group-hover:text-primary transition-colors tracking-widest uppercase mt-4">Certificación</div>
+                </article>
+
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <div class="logo">TALENT<span>TECH</span></div>
-                <p>Empowering the next generation of tech leaders through intensive, industry-focused training.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+    <!-- FOOTER: Simple & Elegant -->
+    <footer class="border-t border-white/5 py-12 bg-dark/50">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2 grayscale group hover:grayscale-0 transition-all duration-500">
+                <span class="text-lg font-bold">TALENT<span class="text-primary">TECH</span></span>
             </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#bootcamps">Bootcamps</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+            <p class="text-slate-500 text-sm">© 2024 TalentTech Center. Hecho con <span class="text-primary">✦</span> para la próxima generación.</p>
+            <div class="flex gap-6 text-slate-400">
+                <a href="#" class="hover:text-primary transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-primary transition-colors">Twitter</a>
+                <a href="#" class="hover:text-primary transition-colors">GitHub</a>
             </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Talent Tech. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- VAPI WIDGET INTEGRATION -->
+    <!-- UX Strategy: El widget de voz actúa como un mentor virtual accesible en todo momento para guiar la conversión -->
+    <vapi-widget
+        public-key="b994216b-96c0-404b-9cbe-57e88d2f2204"
+        assistant-id="9c7a3a7c-64cc-458e-affb-17bcfc83f6a5"
+        mode="voice"
+        theme="dark"
+        base-bg-color="#020617"
+        accent-color="#14B8A6"
+        cta-button-color="#14B8A6"
+        cta-button-text-color="#ffffff"
+        border-radius="large"
+        size="full"
+        position="bottom-right"
+        title="TALENTOBOT AI"
+        start-button-text="Hablar con Mentor"
+        end-button-text="Terminar"
+        chat-first-message="¡Hola! Qué nota que estés por aquí. Soy el asistente de TalentTech. ¿Te interesa conocer nuestras rutas en IA y Ciberseguridad o ya sabes en qué bootcamp te vas a inscribir?"
+        chat-placeholder="¿Qué quieres aprender hoy?"
+        voice-show-transcript="true"
+    ></vapi-widget>
+    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-widget@latest/dist/vapi-widget.js"></script>
+
     <script>
-        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "ATdt31mr3x5QLHsiUtW_M"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('py-4', 'shadow-2xl', 'shadow-primary/5');
+            } else {
+                header.classList.remove('py-4', 'shadow-2xl', 'shadow-primary/5');
+            }
+        });
     </script>
 </body>
 
