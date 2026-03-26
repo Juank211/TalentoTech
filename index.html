@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TalentTech | Elite Bootcamps</title>
-    <meta name="description" content="Centro de formación en tecnologías de vanguardia. IA, Ciberseguridad, Big Data y más.">
+    <title>TalentTech | Centro de Formación Digital de Élite</title>
+    <meta name="description" content="Domina las tecnologías más avanzadas: IA, Ciberseguridad, Big Data y más en TalentTech, el centro académico de bootcamps líder en Latam.">
     
     <!-- Design System: Tailwind CSS & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons (Development only, for production use ESM or SVG) -->
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
@@ -19,7 +22,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#14B8A6', // Teal Action Color
+                        primary: '#14B8A6',
                         dark: {
                             DEFAULT: '#020617',
                             card: 'rgba(2, 6, 23, 0.4)',
@@ -27,81 +30,17 @@
                     },
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                     }
                 }
             }
         }
     </script>
-
-    <style>
-        body {
-            background-color: #020617;
-            color: #f8fafc;
-        }
-
-        /* Glassmorphism Utilities */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(20, 184, 166, 0.4);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 240px;
-            gap: 1.5rem;
-        }
-
-        /* Aspect ratio for responsive bento */
-        @media (max-width: 1024px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: auto;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Micro-animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 0%, #14B8A6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
 </head>
 
 <body class="antialiased selection:bg-primary/30 selection:text-primary overflow-x-hidden">
 
     <!-- HEADER: Minimalist Premium Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-dark/80 border-b border-white/5">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-dark/80 border-b border-white/5">
         <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center gap-2 group cursor-pointer">
@@ -131,10 +70,11 @@
 
     <main class="pt-32 pb-20">
         
-        <!-- HERO MINI (Contexto) -->
-        <section id="inicio" class="container mx-auto px-6 mb-24 relative">
-            <div class="absolute -top-20 -left-20 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
-            <div class="max-w-3xl">
+        <!-- HERO SECTION: IMPACTFUL DESIGN -->
+        <section id="inicio" class="container mx-auto px-6 mb-32 relative min-h-[70vh] flex flex-col lg:flex-row items-center gap-12">
+            <div class="hero-glow -top-40 -left-40"></div>
+            
+            <div class="lg:w-1/2">
                 <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-bold uppercase tracking-widest mb-6">Próxima Cohorte: Mayo 2024</span>
                 <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-[1.1] tracking-tighter">
                     Forjando a los <br> 
@@ -143,11 +83,39 @@
                 <p class="text-slate-400 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
                     No solo enseñamos código, transformamos carreras. Programas intensivos diseñados para el mercado laboral global con mentoría de élite.
                 </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#bootcamps" class="px-8 py-4 bg-primary text-[#020617] rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-all">
+                        Explorar Rutas <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#meet-us" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-bold hover:bg-white/10 transition-all">
+                        Agendar Llamada
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative">
+                <div class="hero-image-container animate-float">
+                    <img src="assets/hero.png" alt="Futurismo Tecnológico" class="w-full h-auto object-cover opacity-90">
+                </div>
+                <!-- Stats Overlay -->
+                <div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl hidden md:block">
+                    <p class="text-3xl font-bold text-primary">95%</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Tasa de Empleabilidad</p>
+                </div>
+                <div class="absolute -top-6 -right-6 glass-card p-6 rounded-2xl hidden md:block">
+                    <div class="flex -space-x-4 mb-2">
+                        <img src="assets/student1.png" alt="Egresado" class="w-10 h-10 rounded-full border-2 border-dark-bg object-cover">
+                        <img src="assets/student2.png" alt="Egresada" class="w-10 h-10 rounded-full border-2 border-dark-bg object-cover">
+                        <img src="assets/student3.png" alt="Egresado" class="w-10 h-10 rounded-full border-2 border-dark-bg object-cover">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold border-2 border-dark-bg text-[#020617]">+500</div>
+                    </div>
+                    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Comunidad Activa</p>
+                </div>
             </div>
         </section>
 
         <!-- BOOTCAMPS SECTION: BENTO GRID -->
-        <section id="bootcamps" class="container mx-auto px-6">
+        <section id="bootcamps" class="container mx-auto px-6 mb-32">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div>
                     <h2 class="text-4xl font-bold mb-4 tracking-tight">Rutas de Especialización</h2>
@@ -232,25 +200,75 @@
 
             </div>
         </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="comunidad" class="container mx-auto px-6 mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 tracking-tight">Graduados que Impactan</h2>
+                <p class="text-slate-500 mx-auto max-w-xl">TalentTech ha sido el trampolín para cientos de profesionales que hoy lideran proyectos en las mejores empresas.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="assets/student1.png" alt="Student" class="w-16 h-16 rounded-full object-cover grayscale group hover:grayscale-0 transition-all">
+                        <div>
+                            <p class="font-bold">Juan Rivera</p>
+                            <p class="text-primary text-xs font-bold">IA Engineer @Globant</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm italic">"El bootcamp de IA en TalentTech no solo me dio bases técnicas, sino la mentalidad necesaria para resolver problemas reales con modelos disruptivos."</p>
+                </div>
+                
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="assets/student2.png" alt="Student" class="w-16 h-16 rounded-full object-cover grayscale group hover:grayscale-0 transition-all">
+                        <div>
+                            <p class="font-bold">Luz Marina</p>
+                            <p class="text-primary text-xs font-bold">Cyber Security Specialist</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm italic">"La intensidad y el nivel de los mentores es incomparable. Hoy me siento capaz de asegurar infraestructuras críticas gracias a lo aprendido."</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="assets/student3.png" alt="Student" class="w-16 h-16 rounded-full object-cover grayscale group hover:grayscale-0 transition-all">
+                        <div>
+                            <p class="font-bold">Carlos Mora</p>
+                            <p class="text-primary text-xs font-bold">Senior Data Architect</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm italic">"El enfoque en proyectos reales me permitió armar un portafolio sólido que me abrió las puertas de mi actual empleo en tiempo récord."</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER: Simple & Elegant -->
+    <!-- FOOTER -->
     <footer class="border-t border-white/5 py-12 bg-dark/50">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-2 grayscale group hover:grayscale-0 transition-all duration-500">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform duration-300">
+                    <i data-lucide="zap" class="text-[#020617] w-5 h-5 fill-current"></i>
+                </div>
                 <span class="text-lg font-bold">TALENT<span class="text-primary">TECH</span></span>
             </div>
-            <p class="text-slate-500 text-sm">© 2024 TalentTech Center. Hecho con <span class="text-primary">✦</span> para la próxima generación.</p>
+            <p class="text-slate-500 text-sm">© 2024 TalentTech Center. Forjando la próxima generación tecnológica.</p>
             <div class="flex gap-6 text-slate-400">
-                <a href="#" class="hover:text-primary transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-primary transition-colors">Twitter</a>
-                <a href="#" class="hover:text-primary transition-colors">GitHub</a>
+                <a href="#" class="hover:text-primary transition-colors"><i data-lucide="linkedin"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i data-lucide="twitter"></i></a>
+                <a href="#" class="hover:text-primary transition-colors"><i data-lucide="github"></i></a>
             </div>
         </div>
     </footer>
 
+    <!-- CHATBASE CHATBOT WIDGET -->
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="ATdt31mr3x5QLHsiUtW_M";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+
     <!-- VAPI WIDGET INTEGRATION -->
-    <!-- UX Strategy: El widget de voz actúa como un mentor virtual accesible en todo momento para guiar la conversión -->
     <vapi-widget
         public-key="b994216b-96c0-404b-9cbe-57e88d2f2204"
         assistant-id="9c7a3a7c-64cc-458e-affb-17bcfc83f6a5"
@@ -262,7 +280,7 @@
         cta-button-text-color="#ffffff"
         border-radius="large"
         size="full"
-        position="bottom-right"
+        position="bottom-left"
         title="TALENTOBOT AI"
         start-button-text="Hablar con Mentor"
         end-button-text="Terminar"
@@ -270,7 +288,7 @@
         chat-placeholder="¿Qué quieres aprender hoy?"
         voice-show-transcript="true"
     ></vapi-widget>
-    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-widget@latest/dist/vapi-widget.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-widget@latest/dist/vapi-widget.min.js"></script>
 
     <script>
         // Init Lucide Icons
@@ -278,11 +296,13 @@
 
         // Header scroll effect
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('py-4', 'shadow-2xl', 'shadow-primary/5');
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-4', 'shadow-2xl', 'shadow-primary/5', 'bg-dark/95');
+                header.classList.remove('h-20');
             } else {
-                header.classList.remove('py-4', 'shadow-2xl', 'shadow-primary/5');
+                header.classList.remove('py-4', 'shadow-2xl', 'shadow-primary/5', 'bg-dark/95');
+                header.classList.add('h-20');
             }
         });
     </script>
