@@ -17,6 +17,14 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
+    <!-- Vapi Widget Script (Head-loading for early custom element registration) -->
+    <script
+      src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js"
+      async
+      type="text/javascript">
+    </script>
+
+    
     <script>
         tailwind.config = {
             theme: {
@@ -270,8 +278,8 @@
 
     <!-- VAPI WIDGET INTEGRATION -->
     <vapi-widget
-        public-key="b994216b-96c0-404b-9cbe-57e88d2f2204"
-        assistant-id="9c7a3a7c-64cc-458e-affb-17bcfc83f6a5"
+        public-key="bb2a1c05-dcac-429e-905e-981e2a9ce379"
+        assistant-id="b994216b-96c0-404b-9cbe-57e88d2f2204"
         mode="voice"
         theme="dark"
         base-bg-color="#020617"
@@ -287,8 +295,8 @@
         chat-first-message="¡Hola! Qué nota que estés por aquí. Soy el asistente de TalentTech. ¿Te interesa conocer nuestras rutas en IA y Ciberseguridad o ya sabes en qué bootcamp te vas a inscribir?"
         chat-placeholder="¿Qué quieres aprender hoy?"
         voice-show-transcript="true"
-    ></vapi-widget>
-    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-widget@latest/dist/vapi-widget.min.js"></script>
+    >
+    </vapi-widget>
 
     <script>
         // Init Lucide Icons

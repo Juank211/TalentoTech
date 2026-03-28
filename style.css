@@ -70,9 +70,17 @@ body {
 
 /* Animations */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .animate-float {
@@ -115,4 +123,46 @@ body {
 .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+}
+
+/* Widget Conflict Resolution (Preventing overlapping and ensuring visibility) */
+/* Estilización Premium para Vapi Widget */
+vapi-widget {
+    z-index: 10000 !important;
+    position: fixed !important;
+    bottom: 2rem !important;
+    left: 2rem !important;
+    pointer-events: auto !important;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 0px var(--primary));
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+vapi-widget:hover {
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 15px rgba(20, 184, 166, 0.4));
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Animación de pulso sutil para llamar la atención del usuario */
+@keyframes vapi-pulse {
+    0% { filter: drop-shadow(0 0 0px rgba(20, 184, 166, 0)); }
+    50% { filter: drop-shadow(0 0 10px rgba(20, 184, 166, 0.3)); }
+    100% { filter: drop-shadow(0 0 0px rgba(20, 184, 166, 0)); }
+}
+
+vapi-widget[active="true"] {
+    animation: vapi-pulse 2s infinite;
+}
+
+#chatbase-bubble-window {
+    z-index: 9999 !important;
+}
+
+/* Asegurar que los widgets no oculten UI crítica en móvil */
+@media (max-width: 640px) {
+    vapi-widget {
+        transform: scale(0.8);
+        transform-origin: bottom left;
+        bottom: 1rem !important;
+        left: 1rem !important;
+    }
 }
